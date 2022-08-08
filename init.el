@@ -11,9 +11,49 @@
 (use-package ayu-theme
   :config (load-theme 'ayu-grey t))
 
+;; Enable dashboard
+(require 'dashboard)
+(dashboard-setup-startup-hook)
+
+;; Dashboard config
+;; Set the title
+(setq dashboard-banner-logo-title "Welcome to GNU Emacs, Lilly.")
+;; Enable init info
+(setq dashboard-set-init-info t)
+;; Use cool emacs logo instead of the GNU one
+(setq dashboard-startup-banner 'logo)
+;; Custom footer
+(setq dashboard-footer-messages '("Have a nice day!"))
+(setq dashboard-footer-icon (all-the-icons-octicon "heart"
+                                                   :height 1.1
+                                                   :v-adjust -0.05
+                                                   :face 'font-lock-keyword-face))
+;; Center content
+(setq dashboard-center-content t)
+
+;; Use dashboard as initial buffer.
+(setq initial-buffer-choice (lambda () (get-buffer-create "*dashboard*")))
+
+;; Use doom modeline
+(require 'doom-modeline)
+(doom-modeline-mode 1)
+
+;; Set height for modeline
+(setq-default doom-modeline-height 30)
+
 ;; enable discord rpc
 (require 'elcord)
 (elcord-mode)
+
+;; Company mode
+(add-hook 'after-init-hook 'global-company-mode)
+
+;; Use transient mark
+(transient-mark-mode 1)
+
+;;; Org mode configuration
+;; Enable Org mode
+(require 'org)
 
 ;; enable web mode for jsx
 (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
@@ -34,7 +74,17 @@
 (require 'racket-xp)
 (add-hook 'racket-mode-hook #'racket-xp-mode)
 
-;; Custom
+;; Enable code completion
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'racket-mode-hook 'company-mode)
+(add-hook 'racket-repl-mode-hook 'company-mode)
+(add-to-list 'company-backends #'company-tabnine)
+
+
+;; Disable tool bar
+(tool-bar-mode -1)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

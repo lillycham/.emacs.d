@@ -8,8 +8,7 @@
 (package-initialize)
 
 ;; Set theme
-(use-package ayu-theme
-  :config (load-theme 'ayu-grey t))
+(load-theme 'atom-one-dark t)
 
 ;; Enable dashboard
 (require 'dashboard)

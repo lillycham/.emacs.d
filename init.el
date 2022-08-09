@@ -9,8 +9,8 @@
 (package-initialize)
 
 ;; Set theme
-(load-theme 'atom-one-dark t)
-
+(load-theme 'ayu-mirage t)
+(set-background-color "#242936")
 ;; Enable dashboard
 (require 'dashboard)
 (dashboard-setup-startup-hook)
@@ -22,7 +22,7 @@
 
 ;; Enable init info
 (setq dashboard-set-init-info t)
-;; ;; Use cool emacs logo instead of the GNU one
+;; ;; Use cool emacs logo instead of the ugly GNU one
 ;; (setq dashboard-startup-banner 'logo)
 ;; Custom footer
 (setq dashboard-footer-messages '("Have a nice day!"))
@@ -48,9 +48,6 @@
 ;; enable discord rpc
 (require 'elcord)
 (elcord-mode)
-
-;; Company mode
-(add-hook 'after-init-hook 'global-company-mode)
 
 ;; Use transient mark
 (transient-mark-mode 1)
@@ -113,14 +110,16 @@
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
-(require 'vterm)
+;; Function to run a string in vterm
 (defun vterm-exec (xs)
   "Execute string xs in vterm."
+  (interactive "sCommand to run: ")
   (progn (vterm-other-window)
-	 (set-process-sentinel vterm--process #'run-in-vterm-kill)
 	 (vterm-send-string xs)
 	 (vterm-send-return)))
 
+;; Override racket-racket, so we can run racket files in a vterm
+;; instead of eshell.
 (defun racket-racket ()
   "Do \"racket <file>\" in a shell buffer."
   (interactive)
@@ -134,31 +133,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("2c613514f52fb56d34d00cc074fe6b5f4769b4b7f0cc12d22787808addcef12c" default))
+   '("654d673e3044874632462652b1c636331788423e7bd66f783741aa5730ca6d53" "99c0a559a6c04db25aa055073c8390a0387db15c9684c486abc7ab33d23865d8" "21055a064d6d673f666baaed35a69519841134829982cbbb76960575f43424db" "2c613514f52fb56d34d00cc074fe6b5f4769b4b7f0cc12d22787808addcef12c" default))
  '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:inherit nil
-		  :stipple nil
-		  :background "#000919"
-		  :foreground "#c3c0bb"
-		  :inverse-video nil
-		  :box nil
-		  :strike-through nil
-		  :extend nil
-		  :overline nil
-		  :underline nil
-		  :slant normal
-		  :weight normal
-		  :height 120
-		  :width normal
-		  :foundry "nil"
-		  :family "Liga SFMono Nerd Font"))))
- 
- '(line-number ((t (:inherit (shadow default) :background "gray7"))))
- 
- '(line-number-current-line ((t (:foreground "VioletRed1"
-				 :inherit line-number)))))
+ )

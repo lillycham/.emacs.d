@@ -17,7 +17,7 @@
 
 ;; Dashboard config
 ;; Set the title
-(setq dashboard-banner-logo-title "(λ Emacs)")
+(setq dashboard-banner-logo-title "(λ Emacs - Editing Refined)")
 (setq dashboard-startup-banner "~/.emacs.d/blk-hole.png")
 
 ;; Enable init info
@@ -106,6 +106,12 @@
 (when (eq system-type 'gnu/linux)
   (add-hook 'after-make-frame-functions #'set-selected-frame-dark))
 
+;; transparent titlebar
+(when (eq system-type 'darwin)
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (setq ns-use-proxy-icon  nil)
+  (setq frame-title-format nil))
 ;; Rainbow delimiters
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)

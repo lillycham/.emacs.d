@@ -11,6 +11,7 @@
 ;; Set theme
 (load-theme 'ayu-mirage t)
 (set-background-color "#242936")
+
 ;; Enable dashboard
 (require 'dashboard)
 (dashboard-setup-startup-hook)
@@ -77,10 +78,15 @@
 
 ;; Enable code completion
 (require 'company)
+(require 'company-ipa)
+(require 'company-flx)
 (add-hook 'after-init-hook 'global-company-mode)
 (add-hook 'racket-mode-hook 'company-mode)
 (add-hook 'racket-repl-mode-hook 'company-mode)
 (add-to-list 'company-backends #'company-tabnine)
+(add-to-list 'company-backends 'company-ipa-symbols-unicode)
+(with-eval-after-load 'company
+  (company-flx-mode +1))
 
 (use-package fzf
   :config
@@ -116,6 +122,32 @@
 (require 'rainbow-delimiters)
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
+(use-package ligature
+  :load-path "path-to-ligature-repo"
+  :config
+  ;; Enable the "www" ligature in every possible major mode
+  (ligature-set-ligatures 't '("www"))
+  ;; Enable traditional ligature support in eww-mode, if the
+  ;; `variable-pitch' face supports it
+  (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
+  ;; Enable all Cascadia Code ligatures in programming modes
+  (ligature-set-ligatures 't '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
+                                ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
+                                "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
+                                "<~~" "<~>" "<*>" "<||" "<|>" "<$>" "<==" "<=>" "<=<" "<->"
+                                "<--" "<-<" "<<=" "<<-" "<<<" "<+>" "</>" "###" "#_(" "..<"
+                                "..." "+++" "/==" "///" "_|_" "www" "&&" "^=" "~~" "~@" "~="
+                                "~>" "~-" "**" "*>" "*/" "||" "|}" "|]" "|=" "|>" "|-" "{|"
+                                "[|" "]#" "::" ":=" ":>" ":<" "$>" "==" "=>" "!=" "!!" ">:"
+                                ">=" ">>" ">-" "-~" "-|" "->" "--" "-<" "<~" "<*" "<|" "<:"
+                                "<$" "<=" "<>" "<-" "<<" "<+" "</" "#{" "#[" "#:" "#=" "#!"
+                                "##" "#(" "#?" "#_" "%%" ".=" ".-" ".." ".?" "+>" "++" "?:"
+                                "?=" "?." "??" ";;" "/*" "/=" "/>" "//" "__" "~~" "(*" "*)"
+                                "\\\\" "://"))
+  ;; Enables ligature checks globally in all buffers. You can also do it
+  ;; per mode with `ligature-mode'.
+  (global-ligature-mode t))
+
 ;; Function to run a string in vterm
 (defun vterm-exec (xs)
   "Execute string xs in vterm."
@@ -140,6 +172,8 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    '("654d673e3044874632462652b1c636331788423e7bd66f783741aa5730ca6d53" "99c0a559a6c04db25aa055073c8390a0387db15c9684c486abc7ab33d23865d8" "21055a064d6d673f666baaed35a69519841134829982cbbb76960575f43424db" "2c613514f52fb56d34d00cc074fe6b5f4769b4b7f0cc12d22787808addcef12c" default))
+ '(package-selected-packages
+   '(latex-preview-pane ligature org-preview-html zig-mode web-mode vterm typescript-mode smooth-scroll slime rust-mode rainbow-delimiters racket-mode python-mode projectile page-break-lines ob-swiftui nix-mode magit lsp-haskell js2-mode haskell-mode go-mode fzf flycheck-swift elcord doom-modeline dashboard company atom-one-dark-theme all-the-icons use-package ayu-theme))
  '(warning-suppress-types '((comp))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

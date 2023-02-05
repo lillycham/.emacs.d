@@ -2,8 +2,7 @@
 (load-theme 'ayu-mirage t)
 (set-background-color "#242936")
 
-(use-package tab-line-conf
-  :load-path "~/.emacs.d/tab-line-conf.el")
+(load-file "~/.emacs.d/tab-line-conf.el")
 
 ;; enable 80 col ruler
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)

@@ -85,14 +85,12 @@
    '("'" . repeat)
    '("<escape>" . ignore)))
 
-(use-package meow
-  :init
-  (meow-setup)
-  :config
-  (meow-global-mode 1))
+(require 'meow)
+(meow-setup)
+(meow-global-mode 1)
 
 ;; Keybindings
 (setq mac-command-modifier 'meta)
 (setq mac-option-modifier nil)
 
-(provide 'meow)
+(provide 'keys-meow)

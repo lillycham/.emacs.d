@@ -81,4 +81,3 @@ Lastly, if no tabs are left in the window, it is deleted with the `delete-window
 (setq tab-line-tab-name-function #'aorst/tab-line-name-buffer)
 
 (provide 'tab-line-conf)
-;; tab-line-conf ends here

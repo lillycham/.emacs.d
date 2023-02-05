@@ -10,25 +10,17 @@
   (require 'use-package))
 
 ;; Import visual stuff
-(use-package theming
-  :load-path "~/.emacs.d/theming.el")
+(load-file "~/.emacs.d/theming.el")
 
-(use-package keys-meow
-  :load-path "~/.emacs.d/keys-meow.el")
+(load-file "~/.emacs.d/keys-meow.el")
 
-(use-package treemacs-conf
-  :defer t
-  :load-path "~/.emacs.d/treemacs-conf.el")
+(load-file "~/.emacs.d/treemacs-conf.el")
 
-;; Import language servers, support etc.
-(use-package languages
-  :defer t
-  :load-path "~/.emacs.d/languages.el")
+;; Import language servers, support
+(load-file "~/.emacs.d/languages.el")
 
 ;; Import org config
-(use-package org-conf
-  :defer t
-  :load-path "~/.emacs.d/org-conf.el")
+(load-file "~/.emacs.d/org-conf.el")
 
 ;; enable discord rpc
 (use-package elcord

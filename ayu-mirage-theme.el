@@ -12,8 +12,14 @@
  '(region ((t (:background "#2b4768"))))
  '(shadow ((t (:background "#242936" :foreground "#767c85"))))
  '(secondary-selection ((t (:background "#283850"))))
- '(trailing-whitespace ((((class color) (background light)) (:background "red1")) (((class color) (background dark)) (:background "red1")) (t (:inverse-video t))))
- '(font-lock-builtin-face ((t (:background "#242936" :foreground "#5ccfe6"))))
+ '(trailing-whitespace ((((class color) (background light))
+	     (:background "red1"))
+	    (((class color)
+	      (background dark))
+	     (:background "red1"))
+	    (t (:inverse-video t))))
+ '(font-lock-builtin-face ((t (:background "#242936"
+		   :foreground "#5ccfe6"))))
  '(font-lock-comment-delimiter-face ((t (:inherit font-lock-comment-face))))
  '(font-lock-comment-face ((t (:background "#242936" :foreground "#6e7c8e"))))
  '(font-lock-constant-face ((t (:background "#242936" :foreground "#dfbfff"))))
@@ -28,8 +34,8 @@
  '(font-lock-variable-name-face ((t (:background "#242936" :foreground "#73d0ff"))))
  '(font-lock-warning-face ((t (:background "#242936" :foreground "#ff6666" :weight bold))))
  '(button ((t (:inherit link :background "#242936"))))
- '(link ((t (:background "#242936" :foreground "#61AFEF" :underline t :weight bold))))
- '(link-visited ((t (:background "#242936" :foreground "#61AFEF" :underline t :weight normal))))
+ '(link ((t (:background "#242936" :foreground "#61AFEF" :underline nil :weight bold))))
+ '(link-visited ((t (:background "#242936" :foreground "#61AFEF" :underline nil :weight normal))))
  '(fringe ((t (:background "#242936"))))
  '(header-line ((t (:box nil :foreground "grey90" :background "grey20" :inherit (mode-line)))))
  '(tooltip ((t (:inherit variable-pitch :background "lightyellow" :foreground "#242936"))))
@@ -41,11 +47,41 @@
  '(isearch ((t (:foreground "#282C34" :background "#C678DD"))))
  '(isearch-fail ((t (:foreground "#BE5046"))))
  '(lazy-highlight ((t (:underline (:color "#C678DD" :style line) :foreground "#C678DD" :background "#121417"))))
- '(match ((((class color) (min-colors 88) (background light)) (:background "yellow1")) (((class color) (min-colors 88) (background dark)) (:background "RoyalBlue3")) (((class color) (min-colors 8) (background light)) (:foreground "black" :background "yellow")) (((class color) (min-colors 8) (background dark)) (:foreground "white" :background "blue")) (((type tty) (class mono)) (:inverse-video t)) (t (:background "gray"))))
+ '(match ((((class color) (min-colors 88) (background light)) (:background "yellow1"))
+          (((class color) (min-colors 88) (background dark)) (:background "RoyalBlue3"))
+          (((class color) (min-colors 8) (background light)) (:foreground "black" :background "yellow"))
+          (((class color) (min-colors 8) (background dark)) (:foreground "white" :background "blue"))
+          (((type tty) (class mono)) (:inverse-video t)) (t (:background "gray"))))
  '(next-error ((t (:inherit (region)))))
  '(query-replace ((t (:inherit (isearch)))))
- '(linum-highlight-face ((t (:foreground "gray70"))))
- '(linum ((t (:foreground "gray30"))))
- '(default ((t (:stipple nil :background "#242936" :foreground "#cccac2" :weight normal :family "Liga SFMono Nerd Font")))))
+ '(default ((t (:stipple nil
+	     :background "#242936"
+	     :foreground "#CCCAC2"
+	     :weight normal
+	     :family "Liga SFMono Nerd Font"))))
+ '(tab-line-tab ((t (:height 135
+	         :padding-right 20
+	         :padding-left 20
+	         :background "#1A1F29"
+	         :box (:line-width 5 :color "#1A1F29")
+	         :weight bold))))
+ '(tab-line-tab-current ((t (:inherit mode-line
+	                  :height 135
+	                  :box nil
+	                  :background "#242936"
+	                  :box (:line-width 5 :color "#242936")
+	                  :weight bold))))
+ '(tab-line-tab-inactive ((t (:background "#1A1F29"
+		  :weight bold
+		  :box (:line-width 5 :color "#1A1F29")))))
+ '(tab-line-tab-inactive-alternate ((t (:background "#1A1F29"
+		            :box (:line-width 5 :color "#1A1F29")))))
+ '(tab-line-highlight ((t (:background "#1A1F29"))))
+ '(tab-line-tab-special ((t (:italic t))))
+ '(tab-line ((t (:height 135
+	     :padding-left 20
+	     :padding-right 20
+	     :background "#1A1F29"
+	     :box nil)))))
 
 (provide-theme 'ayu-mirage)

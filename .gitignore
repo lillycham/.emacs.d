@@ -9,3 +9,7 @@ racket-mode/
 recentf
 tutorial/
 %backup%~
+/.cache/
+/.emacs.desktop
+/.lsp-session-v1
+/games/

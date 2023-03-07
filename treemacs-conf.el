@@ -1,11 +1,18 @@
 (use-package treemacs
   :ensure t
   :defer t
-  :hook (emacs-startup . treemacs)
+  :hook ((emacs-startup . treemacs)
+         (treemacs-mode . variable-pitch-mode))
   :init
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   :config
+  ;; Use not ugly icons
+  (use-package treemacs-all-the-icons
+    :ensure t
+    :defer t
+    :config
+    (treemacs-load-theme "all-the-icons"))
   (progn
     (setq treemacs-collapse-dirs                   (if treemacs-python-executable 3 0)
           treemacs-deferred-git-apply-delay        0.5
@@ -61,7 +68,7 @@
 
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
-    ;;(treemacs-resize-icons 44)
+    ;;(treemacs-resize- 44)
 
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)
@@ -86,10 +93,6 @@
         ("C-x t B"   . treemacs-bookmark)
         ("C-x t C-t" . treemacs-find-file)
         ("C-x t M-t" . treemacs-find-tag)))
-
-;; Use not ugly icons
-(require 'treemacs-all-the-icons)
-(treemacs-load-theme "all-the-icons")
 
 (use-package treemacs-magit
   :after (treemacs magit)

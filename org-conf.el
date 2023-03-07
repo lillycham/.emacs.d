@@ -1,7 +1,17 @@
 ;; Org mode configuration
 (use-package org
+  :ensure t
+  :defer t
   :init
-  (use-package org-variable-pitch)
+  (use-package org-variable-pitch
+    :ensure t)
+  (use-package org-bullets
+    :ensure t
+    :defer t)
+
+  (use-package org-roam
+    :ensure t
+    :defer t)
   :config
   (setq org-agenda-files '("~/org"))
   ;; Automatic switching to variable pitch mode in org buffers

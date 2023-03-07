@@ -1,5 +1,33 @@
 ;; Tab bar config
-(defun my/tab-line-tab-name-buffer (buffer &optional _buffers)
+
+;; Theme
+(custom-set-faces
+ '(tab-line-tab ((t (:height 135
+	         :padding-right 20
+	         :padding-left 20
+	         :background "#FFFFE8"
+	         :box (:line-width 5 :color "#FFFFE8")
+	         :weight bold))))
+ '(tab-line-tab-current ((t (:inherit mode-line
+	                  :height 135
+	                  :box nil
+	                  :background "#FFFFE8"
+	                  :box (:line-width 5 :color "#FFFFE8")
+	                  :weight bold))))
+ '(tab-line-tab-inactive ((t (:inherit mode-line-inactive
+		  :weight bold
+		  :box (:line-width 5 :color "#e5e5d2")))))
+ '(tab-line-tab-inactive-alternate ((t (:background "#FFFFE8"
+		            :box (:line-width 5 :color "#FFFFE8")))))
+ '(tab-line-highlight ((t (:background "#1A1F29"))))
+ '(tab-line-tab-special ((t (:italic t))))
+ '(tab-line ((t (:height 135
+	     :inherit variable-pitch
+	     :padding-left 20
+	     :padding-right 20
+	     :background "#FFFFE8"
+	     :box nil)))))
+(defun lilly/tab-line-tab-name-buffer (buffer &optional _buffers)
   (format " %s  " (buffer-name buffer)))
 
 (global-tab-line-mode 1)
@@ -9,7 +37,7 @@
 (setq-default tab-width 20)
 (setq-default tab-line-separator "")
 (setq-default tab-bar-border nil)
-(setq-default tab-line-tab-name-function #'my/tab-line-tab-name-buffer)
+(setq-default tab-line-tab-name-function #'lilly/tab-line-tab-name-buffer)
 
 (defcustom tab-line-tab-min-width 10
   "Minimum width of a tab in characters."
@@ -78,6 +106,8 @@ Lastly, if no tabs are left in the window, it is deleted with the `delete-window
                (unless (cdr tab-list)
                  (ignore-errors (delete-window window)))))))
     (force-mode-line-update)))
-(setq tab-line-tab-name-function #'aorst/tab-line-name-buffer)
+
+;; (setq tab-line-tab-name-function #'aorst/tab-line-name-buffer)
+(global-tab-line-mode 1)
 
 (provide 'tab-line-conf)

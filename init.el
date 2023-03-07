@@ -9,7 +9,42 @@
 (eval-when-compile
   (require 'use-package))
 
-;; Import visual stuff
+(use-package apheleia
+  :ensure t
+  :defer t)
+
+(use-package projectile
+  :ensure t
+  :defer t)
+
+(use-package corfu
+  :ensure t
+  :defer t)
+
+(use-package magit
+  :ensure t
+  :defer t)
+
+(use-package company-flx
+  :ensure t
+  :defer t)
+
+(use-package company-ipa
+  :ensure t
+  :defer t)
+
+(use-package org-preview-html
+  :ensure t
+  :defer t)
+
+(use-package page-break-lines
+  :ensure t
+  :defer t)
+
+(use-package which-key
+  :ensure t
+  :defer t)
+
 (load-file "~/.emacs.d/theming.el")
 
 (load-file "~/.emacs.d/keys-meow.el")
@@ -22,9 +57,20 @@
 ;; Import org config
 (load-file "~/.emacs.d/org-conf.el")
 
+(load-file "~/.emacs.d/tab-line-conf.el")
+
 ;; enable discord rpc
 (use-package elcord
+  :ensure t
   :config (elcord-mode 1))
+
+(use-package smudge
+  :ensure t
+  :config (setq smudge-oauth2-client-secret (json-read-file "~/.emacs.d/smudge.json")
+                smudge-oauth2-client-id "7ff47910ba82426e9bc717ff27fe847b"
+                smudge-transport 'connect))
+
+(define-key smudge-mode-map (kbd "C-c .") 'smudge-command-map)
 
 ;; disable tilde file stuff
 (setq backup-directory-alist `(("." . "~/.emacs.bak")))
@@ -50,17 +96,15 @@
 
 ;; Use corfu completions
 (use-package corfu
-  ;; Optional customizations
+  :ensure t
   :custom
-  (corfu-auto t)                 ;; Enable auto completion
+  ;; Enable auto completion
+  (corfu-auto t)
   
-  ;; Recommended: Enable Corfu globally.
-  ;; This is recommended since Dabbrev can be used globally (M-/).
-  ;; See also `corfu-excluded-modes'.
+  ;; Enable Corfu globally.
   :init
   (global-corfu-mode))
 
-;; A few more useful configurations...
 (use-package emacs
   :init
   ;; TAB cycle if there are only few candidates
@@ -70,8 +114,9 @@
         #'command-completion-default-include-p)
 
   ;; Enable indentation+completion using the TAB key.
-  ;; `completion-at-point' is often bound to M-TAB.
   (setq tab-always-indent 'complete))
+
+(put 'upcase-region 'disabled nil)
 
 ;; Custom vars
 (custom-set-variables
@@ -82,12 +127,20 @@
  '(custom-safe-themes
    '("d1b47fb8a148660c356bad0bcbc48da7bb1919118b05a7048a303729bfb6f389" "654d673e3044874632462652b1c636331788423e7bd66f783741aa5730ca6d53" "99c0a559a6c04db25aa055073c8390a0387db15c9684c486abc7ab33d23865d8" "21055a064d6d673f666baaed35a69519841134829982cbbb76960575f43424db" "2c613514f52fb56d34d00cc074fe6b5f4769b4b7f0cc12d22787808addcef12c" default))
  '(package-selected-packages
-   '(treemacs-conf treemacs-magit treemacs-icons-dired treemacs dired-sidebar latex-preview-pane ligature org-preview-html zig-mode web-mode vterm typescript-mode smooth-scroll slime rust-mode rainbow-delimiters racket-mode python-mode projectile page-break-lines ob-swiftui nix-mode magit lsp-haskell js2-mode haskell-mode go-mode fzf flycheck-swift elcord doom-modeline dashboard company atom-one-dark-theme all-the-icons use-package ayu-theme))
+   '(rustic ## smudge treemacs-conf treemacs-magit treemacs-icons-dired treemacs dired-sidebar latex-preview-pane ligature org-preview-html zig-mode web-mode vterm typescript-mode smooth-scroll slime rust-mode rainbow-delimiters racket-mode python-mode projectile page-break-lines ob-swiftui nix-mode magit lsp-haskell js2-mode haskell-mode go-mode fzf flycheck-swift elcord doom-modeline dashboard company atom-one-dark-theme all-the-icons use-package ayu-theme))
  '(warning-suppress-types '((lsp-mode) (comp))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(variable-pitch ((t (:background "#242936" :family "Go")))))
-(put 'upcase-region 'disabled nil)
+ '(font-lock-comment-face ((t (:foreground "#006600" :slant normal))))
+ '(tab-line ((t (:height 135 :inherit variable-pitch :padding-left 20 :padding-right 20 :background "#FFFFE8" :box nil))))
+ '(tab-line-highlight ((t (:background "#1A1F29"))))
+ '(tab-line-tab ((t (:height 135 :padding-right 20 :padding-left 20 :background "#FFFFE8" :box (:line-width 5 :color "#FFFFE8") :weight bold))))
+ '(tab-line-tab-current ((t (:inherit mode-line :height 135 :box nil :background "#FFFFE8" :box (:line-width 5 :color "#FFFFE8") :weight bold))))
+ '(tab-line-tab-inactive ((t (:inherit mode-line-inactive :weight bold :box (:line-width 5 :color "#e5e5d2")))))
+ '(tab-line-tab-inactive-alternate ((t (:background "#FFFFE8" :box (:line-width 5 :color "#FFFFE8")))))
+ '(tab-line-tab-special ((t (:italic t))))
+ '(variable-pitch ((t (:background "#FFFFE6" :family "Go")))))

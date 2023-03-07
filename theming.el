@@ -1,8 +1,8 @@
 ;; Set theme
-(load-theme 'ayu-mirage t)
-(set-background-color "#242936")
-
-(load-file "~/.emacs.d/tab-line-conf.el")
+(load-theme 'acme t)
+(set-foreground-color "#000000")
+(set-face-attribute 'default nil :font "Liga SFMono Nerd Font-14" )
+(set-face-attribute 'variable-pitch nil :font "Lucida Grande-14" )
 
 ;; enable 80 col ruler
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
@@ -27,7 +27,7 @@
 ;; transparent titlebar
 (when (eq system-type 'darwin)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (add-to-list 'default-frame-alist '(ns-appearance . light))
   (setq ns-use-proxy-icon  nil)
   (setq frame-title-format nil))
 
@@ -46,7 +46,6 @@
   ;; Enable traditional ligature support in eww-mode, if the
   ;; `variable-pitch' face supports it
   (ligature-set-ligatures 'eww-mode '("ff" "fi" "ffi"))
-  ;; Enable all Cascadia Code ligatures in programming modes
   (ligature-set-ligatures 't '("|||>" "<|||" "<==>" "<!--" "####" "~~>" "***" "||=" "||>"
                                 ":::" "::=" "=:=" "===" "==>" "=!=" "=>>" "=<<" "=/=" "!=="
                                 "!!." ">=>" ">>=" ">>>" ">>-" ">->" "->>" "-->" "---" "-<<"
@@ -64,12 +63,17 @@
   ;; per mode with `ligature-mode'.
   (global-ligature-mode t))
 
+(use-package all-the-icons
+  :ensure t
+  :defer t)
+
 ;; Enable dashboard
 (use-package dashboard
+  :ensure t
   :config
   ;; Set title and banner
   (setq dashboard-banner-logo-title "λ emacs")
-  (setq dashboard-startup-banner "~/.emacs.d/blk-hole.png")
+  (setq dashboard-startup-banner 'logo)
   
   ;; Enable init info
   (setq dashboard-set-init-info t)
@@ -91,8 +95,9 @@
 
   ;; Use dashboard as initial buffer.
   (setq initial-buffer-choice
-        (lambda () (get-buffer-create "*dashboard*")))
-  (dashboard-setup-startup-hook))
+        (lambda () (get-buffer-create "*dashboard*"))))
+
+(dashboard-setup-startup-hook)
 
 ;; Line numbers config
 (setq display-line-numbers-width 4)
@@ -100,6 +105,7 @@
 
 ;; Use doom modeline
 (use-package doom-modeline
+  :ensure t
   :config
   ;; Set height of modeline
   (setq-default doom-modeline-height 30)

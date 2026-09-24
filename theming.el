@@ -1,8 +1,17 @@
 ;; Set theme
-(load-theme 'acme t)
-(set-foreground-color "#000000")
-(set-face-attribute 'default nil :font "Liga SFMono Nerd Font-14" )
-(set-face-attribute 'variable-pitch nil :font "Lucida Grande-14" )
+(load-theme 'ayu-mirage t)
+(set-background-color "#242936")
+(add-to-list 'default-frame-alist '(background-color . "#242936"))
+
+;; Under the daemon there is no GUI frame at startup, so set the fonts
+;; again once emacsclient makes one.
+(defun lilly/set-fonts ()
+  (set-face-attribute 'default nil :font "TwilioSansM Nerd Font-14")
+  (set-face-attribute 'variable-pitch nil :font "Lucida Grande-14"))
+
+(if (daemonp)
+    (add-hook 'server-after-make-frame-hook #'lilly/set-fonts)
+  (lilly/set-fonts))
 
 ;; enable 80 col ruler
 (add-hook 'prog-mode-hook #'display-fill-column-indicator-mode)
@@ -72,19 +81,19 @@
   :ensure t
   :config
   ;; Set title and banner
-  (setq dashboard-banner-logo-title "λ emacs")
-  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-banner-logo-title "emacs")
+  (setq dashboard-startup-banner "~/.emacs.d/blk-hole.png")
   
   ;; Enable init info
   (setq dashboard-set-init-info t)
 
   ;; Custom footer
-  (setq dashboard-footer-messages '("have a nice day!"))
-  (setq dashboard-footer-icon
-        (all-the-icons-octicon "heart"
-                               :height 1.1
-                               :v-adjust -0.05
-                               :face 'font-lock-keyword-face))
+  (setq dashboard-footer-messages '("λλλ"))
+  ;; (setq dashboard-footer-icon
+  ;;       (all-the-icons-octicon "heart"
+  ;;                              :height 1.1
+  ;;                              :v-adjust -0.05
+  ;;                              :face 'font-lock-keyword-face))
 
   ;; Control what shows in dashboard
   (setq dashboard-items '((recents  . 5)
@@ -92,6 +101,8 @@
                           (agenda . 5)))
   ;; Center content
   (setq dashboard-center-content t)
+
+  (setq dashboard-vertically-center-content t)
 
   ;; Use dashboard as initial buffer.
   (setq initial-buffer-choice

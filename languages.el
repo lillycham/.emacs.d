@@ -182,14 +182,14 @@
 (use-package lsp-haskell
   :ensure t)
 
-;; Enable agda mode
-(load-file (let ((coding-system-for-read 'utf-8))
-             (shell-command-to-string "agda-mode locate")))
+;; Enable agda mode, if agda is installed
+(when (executable-find "agda-mode")
+  (load-file (let ((coding-system-for-read 'utf-8))
+               (shell-command-to-string "agda-mode locate"))))
 
 (defun lilly/literate-agda-mode ()
   "If the buffer is literate agda, use a variable width font."
-  (setf (alist-get 'background agda2-highlight-faces) 'variable-pitch)\
-  ())
+  (setf (alist-get 'background agda2-highlight-faces) 'variable-pitch))
 
 (add-hook 'agda2-mode-hook 'lilly/literate-agda-mode)
 

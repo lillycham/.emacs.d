@@ -14,6 +14,8 @@
     :defer t)
   :config
   (setq org-agenda-files '("~/org"))
+  ;; Don't prompt about missing agenda files; a daemon can't answer
+  (setq org-agenda-skip-unavailable-files t)
   ;; Automatic switching to variable pitch mode in org buffers
   :hook ((org-mode . org-variable-pitch-minor-mode)
          (org-agenda-mode . org-variable-pitch-minor-mode)))

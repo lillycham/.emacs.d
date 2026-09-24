@@ -22,6 +22,10 @@
 ;; Disable tool bar
 (tool-bar-mode -1)
 
+;; Disable scroll bars. The native macOS ones can't follow the theme.
+(scroll-bar-mode -1)
+(horizontal-scroll-bar-mode -1)
+
 ;; use bar cursor
 (setq-default cursor-type 'bar)
 
@@ -36,7 +40,7 @@
 ;; transparent titlebar
 (when (eq system-type 'darwin)
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  (add-to-list 'default-frame-alist '(ns-appearance . light))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (setq ns-use-proxy-icon  nil)
   (setq frame-title-format nil))
 

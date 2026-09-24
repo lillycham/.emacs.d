@@ -28,6 +28,12 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 
+;; Let the window manager give frames any pixel size, not whole character
+;; cells, and don't let emacs resize frames by itself.
+(setq frame-resize-pixelwise t
+      window-resize-pixelwise t
+      frame-inhibit-implied-resize t)
+
 ;; use bar cursor
 (setq-default cursor-type 'bar)
 

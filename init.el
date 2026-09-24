@@ -137,18 +137,3 @@
      default))
  '(package-selected-packages nil)
  '(warning-suppress-types '((lsp-mode) (comp))))
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(font-lock-comment-face ((t (:foreground "#006600" :slant normal))))
- '(tab-line ((t (:height 135 :inherit variable-pitch :padding-left 20 :padding-right 20 :background "#FFFFE8" :box nil))))
- '(tab-line-highlight ((t (:background "#1A1F29"))))
- '(tab-line-tab ((t (:height 135 :padding-right 20 :padding-left 20 :background "#FFFFE8" :box (:line-width 5 :color "#FFFFE8") :weight bold))))
- '(tab-line-tab-current ((t (:inherit mode-line :height 135 :box nil :background "#FFFFE8" :box (:line-width 5 :color "#FFFFE8") :weight bold))))
- '(tab-line-tab-inactive ((t (:inherit mode-line-inactive :weight bold :box (:line-width 5 :color "#e5e5d2")))))
- '(tab-line-tab-inactive-alternate ((t (:background "#FFFFE8" :box (:line-width 5 :color "#FFFFE8")))))
- '(tab-line-tab-special ((t (:italic t))))
- '(variable-pitch ((t (:family "Go")))))

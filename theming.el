@@ -28,6 +28,15 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 
+;; Draw a draggable divider between side-by-side windows (e.g. treemacs),
+;; styled as a ridge in the theme's border colours.
+(setq window-divider-default-places 'right-only
+      window-divider-default-right-width 5)
+(window-divider-mode 1)
+(set-face-attribute 'window-divider nil :foreground "#3E4451")
+(set-face-attribute 'window-divider-first-pixel nil :foreground "#181A1F")
+(set-face-attribute 'window-divider-last-pixel nil :foreground "#181A1F")
+
 ;; Let the window manager give frames any pixel size, not whole character
 ;; cells, and don't let emacs resize frames by itself.
 (setq frame-resize-pixelwise t

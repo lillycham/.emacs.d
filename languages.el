@@ -2,7 +2,6 @@
 
 (use-package vterm
   :defer t
-  :ensure t
   :config
   
   ;; Function to run a string in vterm
@@ -16,7 +15,6 @@
 ;; Racket language support
 (use-package racket-mode
   :defer t
-  :ensure t
   :config
   ;; Override racket-racket, so we can run racket files in a vterm
   ;; instead of eshell.
@@ -46,49 +44,38 @@
 
 (use-package web-mode
   :defer t
-  :ensure t
   :init (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
   :custom ((web-mode-markup-indent-offset 2)
            (web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))))
 
 (use-package flycheck
-  :ensure t
   :defer t)
 
 (use-package flycheck-swift
-  :ensure t
   :defer t)
 
 (use-package go-mode
-  :ensure t
   :defer t)
 
 (use-package js2-mode
-  :ensure t
   :defer t)
 
 (use-package nix-mode
-  :ensure t
   :defer t)
 
 (use-package ob-swiftui
-  :ensure t
   :defer t)
 
 (use-package fsharp-mode
-  :ensure t
   :defer t)
 
 (use-package csharp-mode
-  :ensure t
   :defer t)
 
 (use-package auctex
-  :ensure t
   :defer t)
 
 (use-package latex-preview-pane
-  :ensure t
   :defer t)
 
 ;; (use-package llvm-mode
@@ -96,7 +83,6 @@
 ;;   :defer t)
 
 (use-package python-mode
-  :ensure t
   :defer t)
 
 ;; (use-package rust-mode
@@ -104,26 +90,21 @@
 ;;   :defer t)
 
 (use-package slime
-  :ensure t
   :defer t)
 
 (use-package swift-mode
-  :ensure t
   :config
   (setq swift-mode:repl-executable "xcrun swift repl")
   :defer t)
 
 (use-package typescript-mode
-  :ensure t
   :defer t)
 
 (use-package zig-mode
-  :ensure t
   :defer t)
 
 (use-package rustic
   :defer
-  :ensure
   :bind (:map rustic-mode-map
               ("M-j" . lsp-ui-imenu)
               ("M-?" . lsp-find-references)
@@ -135,10 +116,8 @@
               ("C-c C-c s" . lsp-rust-analyzer-status)))
 
 (use-package lsp-mode
-  :ensure t
   :config
   (use-package lsp-treemacs
-    :ensure t
     :defer t)
   (lsp-treemacs-sync-mode 1)
 
@@ -163,7 +142,6 @@
          (nix-mode              . lsp)))
 
 (use-package lsp-ui
-  :ensure t
   :defer t
   :custom
   (lsp-ui-peek-always-show t)
@@ -172,11 +150,9 @@
 
 ;; Haskell & Haskell LSP
 (use-package haskell-mode
-  :ensure t
   :defer t)
 
 (use-package lsp-haskell
-  :ensure t
   :after haskell-mode)
 
 ;; Enable agda mode, if agda is installed

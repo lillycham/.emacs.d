@@ -1,11 +1,8 @@
 ;;; init.el -*- lexical-binding: t -*-
 
-;; Add MELPA package repo
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/") t)
-
-(package-initialize)
+;; All packages come from Nix (config/editors/epkgs.nix in nixfiles),
+;; so package.el never installs anything itself.
+(setq package-archives nil)
 
 ;; Initialise use-package
 (eval-when-compile
@@ -19,25 +16,20 @@
 
 ;; Format buffers on save
 (use-package apheleia
-  :ensure t
   :config
   (apheleia-global-mode 1))
 
 (use-package projectile
-  :ensure t
   :config
   (projectile-mode 1))
 
 (use-package magit
-  :ensure t
   :defer t)
 
 (use-package org-preview-html
-  :ensure t
   :defer t)
 
 (use-package page-break-lines
-  :ensure t
   :config
   (global-page-break-lines-mode 1))
 
@@ -57,28 +49,12 @@
 ;; Import org config
 (load (locate-user-emacs-file "org-conf"))
 
-;; enable discord rpc
-(use-package elcord
-  :ensure t
-  :config (elcord-mode 1))
-
-(use-package smudge
-  :ensure t
-  :bind-keymap ("C-c ." . smudge-command-map)
-  :config
-  (setq smudge-oauth2-client-id "7ff47910ba82426e9bc717ff27fe847b"
-        smudge-transport 'connect)
-  ;; The secret is kept out of the repo, so it may be missing
-  (when (file-exists-p "~/.emacs.d/smudge.json")
-    (setq smudge-oauth2-client-secret (json-read-file "~/.emacs.d/smudge.json"))))
-
 ;; disable tilde file stuff
 (setq backup-directory-alist `(("." . "~/.emacs.bak")))
 
 ;; Enable fzf fuzzy finder
 (use-package fzf
   :defer t
-  :ensure t
   :config
   (setq fzf/args "-x --color bw --print-query --margin=1,0 --no-hscroll"
         fzf/executable "fzf"
@@ -96,7 +72,6 @@
 
 ;; Use corfu completions
 (use-package corfu
-  :ensure t
   :custom
   ;; Enable auto completion
   (corfu-auto t)

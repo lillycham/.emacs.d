@@ -87,7 +87,7 @@
    '("'" . repeat)
    '("<escape>" . ignore)))
 
-(use-package meow :ensure t)
+(use-package meow)
 (require 'meow)
 (meow-setup)
 (meow-global-mode 1)

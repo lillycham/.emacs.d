@@ -1,7 +1,6 @@
 ;;; treemacs-conf.el -*- lexical-binding: t -*-
 
 (use-package treemacs
-  :ensure t
   :defer t
   :hook (treemacs-mode . variable-pitch-mode)
   :init
@@ -17,7 +16,6 @@
   :config
   ;; Use not ugly icons
   (use-package treemacs-all-the-icons
-    :ensure t
     :config
     (treemacs-load-theme "all-the-icons"))
   (progn
@@ -102,8 +100,7 @@
         ("C-x t M-t" . treemacs-find-tag)))
 
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 
 (provide 'treemacs-conf)
 ;; treemacs-conf.el ends here

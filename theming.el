@@ -48,13 +48,11 @@
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
-  :ensure t
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
 (use-package ligature
 ;;  :load-path "https://github.com/mickeynp/ligature.el"
-  :ensure t
   :config
   ;; Enable the "www" ligature in every possible major mode
   (ligature-set-ligatures 't '("www"))
@@ -79,12 +77,10 @@
   (global-ligature-mode t))
 
 (use-package all-the-icons
-  :ensure t
   :defer t)
 
 ;; Enable dashboard
 (use-package dashboard
-  :ensure t
   :config
   ;; Set title and banner
   (setq dashboard-banner-logo-title "emacs")
@@ -122,7 +118,6 @@
 
 ;; Use doom modeline
 (use-package doom-modeline
-  :ensure t
   :config
   ;; Set height of modeline
   (setq-default doom-modeline-height 30)

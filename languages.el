@@ -1,3 +1,5 @@
+;;; languages.el -*- lexical-binding: t -*-
+
 (use-package vterm
   :defer t
   :ensure t
@@ -31,10 +33,9 @@
 ;;   :ensure t
 ;;   :hook ((racket-mode . racket-xp-mode)))
 
-;; Lisp language support
-(use-package lisp
-  :defer t
-  :hook (after-save . check-parens))
+;; Check for unbalanced parens when saving elisp
+(add-hook 'emacs-lisp-mode-hook
+          (lambda () (add-hook 'after-save-hook #'check-parens nil t)))
 
 (define-key emacs-lisp-mode-map (kbd "C-c C-l") 'eval-buffer)
 
@@ -116,10 +117,6 @@
   :ensure t
   :defer t)
 
-(use-package web-mode
-  :ensure t
-  :defer t)
-
 (use-package zig-mode
   :ensure t
   :defer t)
@@ -167,6 +164,7 @@
 
 (use-package lsp-ui
   :ensure t
+  :defer t
   :custom
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
@@ -175,12 +173,11 @@
 ;; Haskell & Haskell LSP
 (use-package haskell-mode
   :ensure t
-  :config
-  (setq lsp-haskell-server-path
-        "~/.ghcup/bin/haskell-language-server-9.2.4~1.8.0.0"))
+  :defer t)
 
 (use-package lsp-haskell
-  :ensure t)
+  :ensure t
+  :after haskell-mode)
 
 ;; Enable agda mode, if agda is installed
 (when (executable-find "agda-mode")

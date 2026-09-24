@@ -1,3 +1,5 @@
+;;; ayu-grey-theme.el -*- lexical-binding: t -*-
+
 (deftheme ayu-grey
   "Created 2018-05-06. An emacs-port of the dark verions of the amazing Ayu-theme")
 

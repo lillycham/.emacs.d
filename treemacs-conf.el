@@ -1,16 +1,23 @@
+;;; treemacs-conf.el -*- lexical-binding: t -*-
+
 (use-package treemacs
   :ensure t
   :defer t
-  :hook ((emacs-startup . treemacs)
-         (treemacs-mode . variable-pitch-mode))
+  :hook (treemacs-mode . variable-pitch-mode)
   :init
+  ;; Open treemacs at startup, or in each new frame under the daemon.
+  (defun lilly/open-treemacs ()
+    (require 'treemacs)
+    (unless (eq (treemacs-current-visibility) 'visible)
+      (save-selected-window (treemacs))))
+  (add-hook (if (daemonp) 'server-after-make-frame-hook 'emacs-startup-hook)
+            #'lilly/open-treemacs)
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   :config
   ;; Use not ugly icons
   (use-package treemacs-all-the-icons
     :ensure t
-    :defer t
     :config
     (treemacs-load-theme "all-the-icons"))
   (progn

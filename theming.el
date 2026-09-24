@@ -1,3 +1,5 @@
+;;; theming.el -*- lexical-binding: t -*-
+
 ;; Set theme
 (load-theme 'ayu-mirage t)
 (set-background-color "#242936")
@@ -116,7 +118,7 @@
 
 ;; Line numbers config
 (setq display-line-numbers-width 4)
-(setq display-line-numbers 'relative)
+(setq-default display-line-numbers-type 'relative)
 
 ;; Use doom modeline
 (use-package doom-modeline

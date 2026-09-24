@@ -1,3 +1,5 @@
+;;; init.el -*- lexical-binding: t -*-
+
 ;; Add MELPA package repo
 (require 'package)
 (add-to-list 'package-archives
@@ -9,27 +11,24 @@
 (eval-when-compile
   (require 'use-package))
 
+;; Keep Custom's writes out of this file.
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(load custom-file 'noerror)
+
+(setq warning-suppress-types '((lsp-mode) (comp)))
+
+;; Format buffers on save
 (use-package apheleia
   :ensure t
-  :defer t)
+  :config
+  (apheleia-global-mode 1))
 
 (use-package projectile
   :ensure t
-  :defer t)
-
-(use-package corfu
-  :ensure t
-  :defer t)
+  :config
+  (projectile-mode 1))
 
 (use-package magit
-  :ensure t
-  :defer t)
-
-(use-package company-flx
-  :ensure t
-  :defer t)
-
-(use-package company-ipa
   :ensure t
   :defer t)
 
@@ -39,26 +38,24 @@
 
 (use-package page-break-lines
   :ensure t
-  :defer t)
+  :config
+  (global-page-break-lines-mode 1))
 
 (use-package which-key
-  :ensure t
-  :defer t)
+  :config
+  (which-key-mode 1))
 
-(load-file "~/.emacs.d/theming.el")
+(load (locate-user-emacs-file "theming"))
 
-;; (load-file "~/.emacs.d/keys-meow.el")
+;; (load (locate-user-emacs-file "keys-meow"))
 
-(load-file "~/.emacs.d/treemacs-conf.el")
+(load (locate-user-emacs-file "treemacs-conf"))
 
 ;; Import language servers, support
-(load-file "~/.emacs.d/languages.el")
+(load (locate-user-emacs-file "languages"))
 
 ;; Import org config
-(load-file "~/.emacs.d/org-conf.el")
-
-;; Buffer names are already in the modeline
-;; (load-file "~/.emacs.d/tab-line-conf.el")
+(load (locate-user-emacs-file "org-conf"))
 
 ;; enable discord rpc
 (use-package elcord
@@ -67,14 +64,13 @@
 
 (use-package smudge
   :ensure t
+  :bind-keymap ("C-c ." . smudge-command-map)
   :config
   (setq smudge-oauth2-client-id "7ff47910ba82426e9bc717ff27fe847b"
         smudge-transport 'connect)
   ;; The secret is kept out of the repo, so it may be missing
   (when (file-exists-p "~/.emacs.d/smudge.json")
     (setq smudge-oauth2-client-secret (json-read-file "~/.emacs.d/smudge.json"))))
-
-(define-key smudge-mode-map (kbd "C-c .") 'smudge-command-map)
 
 ;; disable tilde file stuff
 (setq backup-directory-alist `(("." . "~/.emacs.bak")))
@@ -104,7 +100,7 @@
   :custom
   ;; Enable auto completion
   (corfu-auto t)
-  
+
   ;; Enable Corfu globally.
   :init
   (global-corfu-mode))
@@ -121,19 +117,3 @@
   (setq tab-always-indent 'complete))
 
 (put 'upcase-region 'disabled nil)
-
-;; Custom vars
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   '("d1b47fb8a148660c356bad0bcbc48da7bb1919118b05a7048a303729bfb6f389"
-     "654d673e3044874632462652b1c636331788423e7bd66f783741aa5730ca6d53"
-     "99c0a559a6c04db25aa055073c8390a0387db15c9684c486abc7ab33d23865d8"
-     "21055a064d6d673f666baaed35a69519841134829982cbbb76960575f43424db"
-     "2c613514f52fb56d34d00cc074fe6b5f4769b4b7f0cc12d22787808addcef12c"
-     default))
- '(package-selected-packages nil)
- '(warning-suppress-types '((lsp-mode) (comp))))

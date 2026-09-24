@@ -1,3 +1,5 @@
+;;; keys-meow.el -*- lexical-binding: t -*-
+
 ;; Meow config/keybinds
 (defun meow-setup ()
   (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)

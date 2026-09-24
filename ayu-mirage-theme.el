@@ -1,3 +1,5 @@
+;;; ayu-mirage-theme.el -*- lexical-binding: t -*-
+
 (deftheme ayu-mirage
   "An emacs port of the excellent Ayu Mirage theme.")
 

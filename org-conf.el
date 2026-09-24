@@ -1,3 +1,5 @@
+;;; org-conf.el -*- lexical-binding: t -*-
+
 ;; Org mode configuration
 (use-package org
   :ensure t
@@ -31,7 +33,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
         subtree-end
       nil)))
 
-(defun argi ()
+(defun my/org-skip-subtree-if-habit ()
   "Skip an agenda entry if it has a STYLE property equal to \"habit\"."
   (let ((subtree-end (save-excursion (org-end-of-subtree t))))
     (if (string= (org-entry-get nil "STYLE") "habit")
@@ -44,7 +46,7 @@ PRIORITY may be one of the characters ?A, ?B, or ?C."
          ((tags "PRIORITY=\"A\""
                 ((org-agenda-skip-function '(org-agenda-skip-entry-if 'todo 'done))
                  (org-agenda-overriding-header "High-priority unfinished tasks:")))
-          (agenda "" ((org-agenda-ndays 1)))
+          (agenda "" ((org-agenda-span 1)))
           (alltodo ""
                    ((org-agenda-skip-function
 		     '(or (my/org-skip-subtree-if-habit)

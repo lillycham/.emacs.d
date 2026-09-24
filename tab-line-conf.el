@@ -1,3 +1,5 @@
+;;; tab-line-conf.el -*- lexical-binding: t -*-
+
 ;; Tab bar config
 
 ;; Theme

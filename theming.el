@@ -1,9 +1,8 @@
 ;;; theming.el -*- lexical-binding: t -*-
 
 ;; Set theme
-(load-theme 'ayu-mirage t)
-(set-background-color "#242936")
-(add-to-list 'default-frame-alist '(background-color . "#242936"))
+(load-theme 'claude-dark t)
+(add-to-list 'default-frame-alist '(background-color . "#262624"))
 
 ;; Under the daemon there is no GUI frame at startup, so set the fonts
 ;; again once emacsclient makes one.
@@ -28,14 +27,11 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 
-;; Draw a draggable divider between side-by-side windows (e.g. treemacs),
-;; styled as a ridge in the theme's border colours.
+;; Draw a draggable divider between side-by-side windows (e.g. treemacs).
+;; The theme colours it as a ridge.
 (setq window-divider-default-places 'right-only
       window-divider-default-right-width 5)
 (window-divider-mode 1)
-(set-face-attribute 'window-divider nil :foreground "#3E4451")
-(set-face-attribute 'window-divider-first-pixel nil :foreground "#181A1F")
-(set-face-attribute 'window-divider-last-pixel nil :foreground "#181A1F")
 
 ;; Let the window manager give frames any pixel size, not whole character
 ;; cells, and don't let emacs resize frames by itself.
